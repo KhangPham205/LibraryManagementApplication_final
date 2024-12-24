@@ -76,18 +76,20 @@
                      Text="{Binding cccd}"/>
             <TextBlock x:Name="countdown"
                         Style="{StaticResource textblock:style1}"
+                       Text="{Binding noti,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                        Grid.Row="5"
                        Grid.Column="2"
                        Margin="10"
-                       HorizontalAlignment="Right"/>
+                       HorizontalAlignment="Right"
+                       Visibility="Collapsed"/>
             <Button x:Name="recover"
                     Content="Gửi Mail"
                     Style="{StaticResource button:style1}"
                     Grid.Column="2"
                     Grid.Row="4"
                     Width="300"
-                    Click="recover_Click"
-                    Command="{Binding RecoverCommand}">
+                    Command="{Binding RecoverCommand}"
+                    CommandParameter="{Binding ElementName=countdown}">
             </Button>
         </Grid>
     </Grid>

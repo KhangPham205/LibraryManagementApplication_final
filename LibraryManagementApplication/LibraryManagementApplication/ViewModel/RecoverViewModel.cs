@@ -5,7 +5,10 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace LibraryManagementApplication.ViewModel
 {
@@ -14,18 +17,20 @@ namespace LibraryManagementApplication.ViewModel
         public string email { get; set; }
         public string sdt { get; set; }
         public string cccd { get; set; }
-
+        public string noti {  get; set; }
+        public DispatcherTimer dispatcherTimer;
+        public int time = 3;
         public ICommand RecoverCommand { get; set; }
 
         public RecoverViewModel()
         {
-            RecoverCommand = new RelayCommand<object>((p) => true, (p) =>
+            RecoverCommand = new RelayCommand<TextBlock>((p) => true, (p) =>
             {
-                recover();
+                recover(p);
             });
         }
 
-        public async void recover()
+        public async void recover(TextBlock countdown)
         {
 
             try
@@ -37,6 +42,14 @@ namespace LibraryManagementApplication.ViewModel
 
                     if (taiKhoan != null)
                     {
+                        dispatcherTimer = new DispatcherTimer();
+                        dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+                        dispatcherTimer.Tick += DispatcherTimer_Tick;
+                        noti = $"Mail sẽ được gửi đến bạn trong {time}s";
+                        OnPropertyChanged(nameof(noti));
+                        countdown.Visibility = Visibility.Visible;
+                        
+                        dispatcherTimer.Start();
                         // Gửi email chứa mật khẩu
                         await SendEmail(taiKhoan.Email, taiKhoan.Password, taiKhoan.UserName);
                         //EXMessagebox.Show("Mật khẩu đã được gửi qua email của bạn!", "Thông báo");
@@ -53,6 +66,7 @@ namespace LibraryManagementApplication.ViewModel
                 // Xử lý lỗi trong quá trình tương tác với cơ sở dữ liệu hoặc gửi email
                 EXMessagebox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi");
             }
+            countdown.Visibility = Visibility.Collapsed;
         }
 
         private async Task SendEmail(string recipientEmail, string password, string username)
@@ -115,5 +129,22 @@ Email: khonggian2k0520@gmail.com
                 Console.WriteLine($"Lỗi khi gửi email: {ex.Message}");
             }
         }
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            if (time > 0)
+            {;
+                time--;
+                noti = $"Mail sẽ được gửi đến bạn trong {time}s";
+                OnPropertyChanged(nameof(noti));
+                
+            }
+            else if (time == 0)
+            {
+                noti = "Mail đã được gửi đến bạn!";
+
+                OnPropertyChanged(nameof(noti));
+            }
+        }
+
     }
 }
