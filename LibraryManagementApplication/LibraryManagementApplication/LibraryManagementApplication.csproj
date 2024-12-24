@@ -10,13 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Icon\bannerbook.jpg" />
-    <None Remove="Icon\book.png" />
-    <None Remove="Icon\user.png" />
+    <Compile Remove="Image\**" />
+    <EmbeddedResource Remove="Image\**" />
+    <None Remove="Image\**" />
+    <Page Remove="Image\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Image\" />
+    <None Remove="Icon\bannerbook.jpg" />
+    <None Remove="Icon\book.png" />
+    <None Remove="Icon\user.png" />
   </ItemGroup>
 
   <ItemGroup>
