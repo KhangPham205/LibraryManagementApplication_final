@@ -19,7 +19,7 @@ namespace LibraryManagementApplication.ViewModel
         public string cccd { get; set; }
         public string noti {  get; set; }
         public DispatcherTimer dispatcherTimer;
-        public int time = 3;
+        public int time;
         public ICommand RecoverCommand { get; set; }
 
         public RecoverViewModel()
@@ -42,17 +42,23 @@ namespace LibraryManagementApplication.ViewModel
 
                     if (taiKhoan != null)
                     {
+                        time = 3;
                         dispatcherTimer = new DispatcherTimer();
                         dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
                         dispatcherTimer.Tick += DispatcherTimer_Tick;
                         noti = $"Mail sẽ được gửi đến bạn trong {time}s";
                         OnPropertyChanged(nameof(noti));
                         countdown.Visibility = Visibility.Visible;
-                        
                         dispatcherTimer.Start();
                         // Gửi email chứa mật khẩu
                         await SendEmail(taiKhoan.Email, taiKhoan.Password, taiKhoan.UserName);
                         //EXMessagebox.Show("Mật khẩu đã được gửi qua email của bạn!", "Thông báo");
+                        if (time < 0)
+                        {
+                            dispatcherTimer.Stop();
+                            countdown.Visibility = Visibility.Collapsed;
+                        }
+                        
                     }
                     else
                     {
@@ -66,7 +72,6 @@ namespace LibraryManagementApplication.ViewModel
                 // Xử lý lỗi trong quá trình tương tác với cơ sở dữ liệu hoặc gửi email
                 EXMessagebox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi");
             }
-            countdown.Visibility = Visibility.Collapsed;
         }
 
         private async Task SendEmail(string recipientEmail, string password, string username)
@@ -131,7 +136,7 @@ Email: khonggian2k0520@gmail.com
         }
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            if (time > 0)
+            if (time >= 1)
             {;
                 time--;
                 noti = $"Mail sẽ được gửi đến bạn trong {time}s";
@@ -140,9 +145,10 @@ Email: khonggian2k0520@gmail.com
             }
             else if (time == 0)
             {
+                time--;
                 noti = "Mail đã được gửi đến bạn!";
-
                 OnPropertyChanged(nameof(noti));
+                
             }
         }
 
