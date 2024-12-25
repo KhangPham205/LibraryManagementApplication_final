@@ -244,9 +244,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                 {
                     MaDauSach = TenDauSach = ISBN = ViTri = NamXB = TrangThai = "";
                     SachList.Remove(SelectedSach);
-                }    
-                else
-                    EXMessagebox.Show("Không thể xóa sách");
+                }
             }
         }
         private async Task SearchSach()
@@ -317,7 +315,16 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             {
                 using (var context = new LibraryDbContext())
                 {
-                    var sachToDelete = await context.Sachs.FirstOrDefaultAsync(s => s == sach);
+                    // Kiểm tra nếu sách đang được mượn
+                    bool hasRelatedCTDM = await context.CTDMs.AnyAsync(c => c.ISBN == sach.ISBN);
+                    if (hasRelatedCTDM)
+                    {
+                        EXMessagebox.Show("Không thể xóa sách vì sách đang được mượn hoặc có liên kết trong chi tiết mượn sách.");
+                        return false;
+                    }
+
+                    // Tiến hành xóa nếu không có liên kết
+                    var sachToDelete = await context.Sachs.FirstOrDefaultAsync(s => s.ISBN == sach.ISBN);
                     if (sachToDelete != null)
                     {
                         context.Sachs.Remove(sachToDelete);

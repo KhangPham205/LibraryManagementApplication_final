@@ -152,10 +152,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                     NhaXuatBanList.Remove(SelectedNhaXuatBan);
                     DisplayName = "";
                 }
-                else
-                {
-                    EXMessagebox.Show("Error deleting the record.");
-                }
             }
         }
 
@@ -238,6 +234,13 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             {
                 using (var context = new LibraryDbContext())
                 {
+                    bool hasRelatedDauSach = await context.DauSachs.AnyAsync(ds => ds.MaNXB == maNXB);
+                    if (hasRelatedDauSach)
+                    {
+                        EXMessagebox.Show("Không thể xóa nhà xuất bản vì có đầu sách liên kết.");
+                        return false;
+                    }
+
                     var nhaXuatBanToDelete = await context.NhaXuatBans.FirstOrDefaultAsync(nxb => nxb.MaNXB == maNXB);
                     if (nhaXuatBanToDelete != null)
                     {
@@ -250,7 +253,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             }
             catch (Exception ex)
             {
-                EXMessagebox.Show($"Error deleting DonMuon: {ex.Message}");
+                EXMessagebox.Show($"Error deleting NhaXuatBan: {ex.Message}");
                 return false;
             }
         }

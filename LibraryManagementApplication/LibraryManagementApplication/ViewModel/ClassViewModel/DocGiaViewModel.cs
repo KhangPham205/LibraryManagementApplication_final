@@ -309,8 +309,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                 bool isSuccess = await DeleteDocGiaFromDatabaseAsync(SelectedDocGia.MaDG);
                 if (isSuccess)
                     EXMessagebox.Show("Xóa thông tin độc giả thành công");
-                else
-                    EXMessagebox.Show("Error deleting the record.");
             }
         }
         private async Task SearchDocGia()
@@ -390,9 +388,16 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             {
                 using (var context = new LibraryDbContext())
                 {
-                    var docGiaToDelete = await context.DocGias.FirstOrDefaultAsync(dg => dg.MaDG == maDG);
+                    var docGiaToDelete = await context.DocGias.Include(d => d.DonMuons)
+                                                               .FirstOrDefaultAsync(dg => dg.MaDG == maDG);
                     if (docGiaToDelete != null)
                     {
+                        if (docGiaToDelete.DonMuons.Count > 0)
+                        {
+                            EXMessagebox.Show("Không thể xóa độc giả vì có đơn mượn liên kết", "Lỗi");
+                            return false;
+                        }
+
                         context.DocGias.Remove(docGiaToDelete);
                         await context.SaveChangesAsync();
                         return true;
@@ -406,7 +411,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                 return false;
             }
         }
-
         public static async Task<List<DocGia>> SearchDocGiaInDatabaseAsync(string tenDG, string sdt, string cccd, string email)
         {
             try

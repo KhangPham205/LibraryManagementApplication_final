@@ -155,10 +155,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                     TheLoaiList.Remove(SelectedTheLoai);
                     DisplayName = "";
                 }
-                else
-                {
-                    EXMessagebox.Show("Error deleting The Loai.");
-                }
             }
         }
         private async Task SearchTheLoai()
@@ -235,7 +231,16 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             {
                 using (var context = new LibraryDbContext())
                 {
-                    var theLoaiToDelete = await context.TheLoais.FirstOrDefaultAsync(s => s == theLoai);
+                    // Kiểm tra nếu có đầu sách nào tham chiếu đến thể loại
+                    bool hasRelatedDauSach = await context.DauSachs.AnyAsync(ds => ds.MaTL == theLoai.MaTL);
+                    if (hasRelatedDauSach)
+                    {
+                        EXMessagebox.Show("Không thể xóa thể loại vì có đầu sách liên kết.");
+                        return false;
+                    }
+
+                    // Nếu không có đầu sách liên kết, tiến hành xóa thể loại
+                    var theLoaiToDelete = await context.TheLoais.FirstOrDefaultAsync(tl => tl.MaTL == theLoai.MaTL);
                     if (theLoaiToDelete != null)
                     {
                         context.TheLoais.Remove(theLoaiToDelete);
@@ -247,7 +252,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             }
             catch (Exception ex)
             {
-                EXMessagebox.Show($"Error deleting The loai: {ex.Message}");
+                EXMessagebox.Show($"Error deleting TheLoai: {ex.Message}");
                 return false;
             }
         }

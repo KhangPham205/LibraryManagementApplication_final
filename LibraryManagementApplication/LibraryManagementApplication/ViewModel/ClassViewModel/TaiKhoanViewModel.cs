@@ -395,8 +395,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                 bool isSuccess = await DeleteTaiKhoanFromDatabaseAsync(SelectedTaiKhoan.UserID);
                 if (isSuccess)
                     EXMessagebox.Show("Xóa tài khoản thành công", "Thông báo");
-                else
-                    EXMessagebox.Show("Error deleting Tai Khoan.");
             }
         }
 
@@ -494,14 +492,22 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                 return false;
             }
         }
-
-        public static async Task<bool> DeleteTaiKhoanFromDatabaseAsync(string userID)
+        private static async Task<bool> DeleteTaiKhoanFromDatabaseAsync(string userID)
         {
             try
             {
                 using (var context = new LibraryDbContext())
                 {
-                    var taiKhoanToDelete = await context.TaiKhoans.FirstOrDefaultAsync(s => s.UserID == userID);
+                    // Kiểm tra nếu tài khoản có liên kết với các đơn mượn
+                    bool hasRelatedDonMuon = await context.DonMuons.AnyAsync(dm => dm.MaNV == userID);
+                    if (hasRelatedDonMuon)
+                    {
+                        EXMessagebox.Show("Không thể xóa tài khoản vì có liên kết với đơn mượn.");
+                        return false;
+                    }
+
+                    // Nếu không có liên kết, tiến hành xóa tài khoản
+                    var taiKhoanToDelete = await context.TaiKhoans.FirstOrDefaultAsync(tk => tk.UserID == userID);
                     if (taiKhoanToDelete != null)
                     {
                         context.TaiKhoans.Remove(taiKhoanToDelete);
@@ -517,7 +523,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                 return false;
             }
         }
-
         public static async Task<List<TaiKhoan>> SearchTaiKhoanInDatabaseAsync(string userName, string password, string loaiNV, string email, string sdt, string cccd)
         {
             try

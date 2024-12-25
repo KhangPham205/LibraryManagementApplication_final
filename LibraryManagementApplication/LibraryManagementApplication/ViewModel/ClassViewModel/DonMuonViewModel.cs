@@ -423,10 +423,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                     MaMuon = MaDG = MaNV = PhiPhat = "";
                     StartBorrowDate = EndBorrowDate = StartReturnDate = EndReturnDate = RealStartReturnDate = RealEndReturnDate = null;
                 }
-                else
-                {
-                    EXMessagebox.Show("Error deleting the record.");
-                }
             }
         }
 
@@ -571,12 +567,21 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             }
         }
 
-        public async Task<bool> DeleteDonMuonFromDatabaseAsync(string maMuon)
+        private static async Task<bool> DeleteDonMuonFromDatabaseAsync(string maMuon)
         {
             try
             {
                 using (var context = new LibraryDbContext())
                 {
+                    // Kiểm tra nếu có chi tiết mượn liên kết với đơn mượn
+                    bool hasRelatedCTDM = await context.CTDMs.AnyAsync(ctdm => ctdm.MaMuon == maMuon);
+                    if (hasRelatedCTDM)
+                    {
+                        EXMessagebox.Show("Không thể xóa đơn mượn vì có chi tiết mượn liên kết.");
+                        return false;
+                    }
+
+                    // Nếu không có liên kết, tiến hành xóa đơn mượn
                     var donMuonToDelete = await context.DonMuons.FirstOrDefaultAsync(dm => dm.MaMuon == maMuon);
                     if (donMuonToDelete != null)
                     {

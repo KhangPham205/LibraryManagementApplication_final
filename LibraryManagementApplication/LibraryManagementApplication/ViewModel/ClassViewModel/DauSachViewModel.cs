@@ -369,8 +369,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                         else
                             MaDauSach = TenDauSach = TenTG = TenTL = TenNXB = NgonNgu = "";
                     }
-                    else
-                        EXMessagebox.Show("Không thể xóa đầu sách trong CSDL");
                 }                
             }
         }
@@ -482,7 +480,16 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             {
                 using (var context = new LibraryDbContext())
                 {
-                    var DauSachToDelete = await context.DauSachs.FirstOrDefaultAsync(s => s == dauSach);
+                    // Kiểm tra nếu có sách nào tham chiếu đến đầu sách này
+                    bool hasRelatedSach = await context.Sachs.AnyAsync(s => s.MaDauSach == dauSach.MaDauSach);
+                    if (hasRelatedSach)
+                    {
+                        EXMessagebox.Show("Không thể xóa đầu sách vì có sách liên kết.");
+                        return false;
+                    }
+
+                    // Nếu không có sách liên kết, tiến hành xóa đầu sách
+                    var DauSachToDelete = await context.DauSachs.FirstOrDefaultAsync(s => s.MaDauSach == dauSach.MaDauSach);
                     if (DauSachToDelete != null)
                     {
                         context.DauSachs.Remove(DauSachToDelete);

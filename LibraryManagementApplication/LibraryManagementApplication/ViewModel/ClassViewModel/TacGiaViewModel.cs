@@ -151,8 +151,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                     TacGiaList.Remove(SelectedTacGia);
                     DisplayName = "";
                 }
-                else
-                    EXMessagebox.Show("Error deleting the record.");
             }
         }
         private async Task SearchTacGia()
@@ -229,7 +227,14 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             {
                 using (var context = new LibraryDbContext())
                 {
-                    var tacGiaToDelete = await context.TacGias.FirstOrDefaultAsync(s => s.MaTG == maTG);
+                    bool hasRelatedDauSach = await context.DauSachs.AnyAsync(ds => ds.MaTG == maTG);
+                    if (hasRelatedDauSach)
+                    {
+                        EXMessagebox.Show("Không thể xóa tác giả vì có đầu sách liên kết.");
+                        return false;
+                    }
+
+                    var tacGiaToDelete = await context.TacGias.FirstOrDefaultAsync(tg => tg.MaTG == maTG);
                     if (tacGiaToDelete != null)
                     {
                         context.TacGias.Remove(tacGiaToDelete);
@@ -241,7 +246,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             }
             catch (Exception ex)
             {
-                EXMessagebox.Show($"Error deleting Tac gia: {ex.Message}");
+                EXMessagebox.Show($"Lỗi xóa tác giả: {ex.Message}");
                 return false;
             }
         }
