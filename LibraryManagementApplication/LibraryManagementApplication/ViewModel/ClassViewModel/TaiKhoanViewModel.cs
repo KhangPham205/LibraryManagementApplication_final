@@ -421,7 +421,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             {
                 using (var context = new LibraryDbContext())
                 {
-                    TaiKhoan taiKhoan = context.TaiKhoans.Where(tk => tk.SDT == SDT && tk.Email == Email && tk.CCCD == CCCD && tk.Password == Password).FirstOrDefault();
+                    TaiKhoan taiKhoan = context.TaiKhoans.Where(tk => tk.UserID == GlobalData.LoginUser.UserID && tk.SDT == SDT && tk.Email == Email && tk.CCCD == CCCD && tk.Password == Password).FirstOrDefault();
                     if (taiKhoan != null)
                     {
                         taiKhoan.Password = NewPassWord;
