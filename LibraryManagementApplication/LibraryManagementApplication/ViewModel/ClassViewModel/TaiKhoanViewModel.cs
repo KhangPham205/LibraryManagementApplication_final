@@ -269,7 +269,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             DeleteCommand = new RelayCommand<object>((p) => SelectedTaiKhoan != null, async (p) => await DeleteTaiKhoan());
             SearchCommand = new RelayCommand<string>((p) => true, async (p) => await SearchTaiKhoan());
             ShowCommand = new RelayCommand<DataGrid>((p) => true, (p) => ShowTaiKhoan());
-            ChangePasswordCommand = new RelayCommand<DataGrid>((p) => true, async (p) => await ChangePassWord());
+            ChangePasswordCommand = new RelayCommand<Window>((p) => true, async (p) => await ChangePassWord(p));
 
             if (GlobalData.LoginUser != null && GlobalData.LoginUser.ProfileImage != null)
             {
@@ -412,7 +412,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
         {           
             LoadTaiKhoanList();
         }
-        private async Task ChangePassWord()
+        private async Task ChangePassWord(Window p)
         {
             if (!string.IsNullOrEmpty(Password) &&
                 !string.IsNullOrEmpty(NewPassWord) &&
@@ -426,6 +426,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                     {
                         taiKhoan.Password = NewPassWord;
                         bool isSuccess = await UpdateTaiKhoanInDatabaseAsync(taiKhoan);
+                        p.Close();
                         if (!isSuccess)
                             EXMessagebox.Show("Error updating Tai Khoan.");
                         else

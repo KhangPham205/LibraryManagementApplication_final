@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        AllowsTransparency="True" ShowInTaskbar="False"
+        AllowsTransparency="True"
         Background="Transparent">
     <Border CornerRadius="20" Background="#e6f3ff">
         <Grid>
