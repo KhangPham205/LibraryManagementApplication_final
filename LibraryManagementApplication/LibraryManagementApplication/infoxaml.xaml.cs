@@ -91,7 +91,7 @@ namespace LibraryManagementApplication
 
             if (openFileDialog.ShowDialog() != true)
             {
-                MessageBox.Show("Bạn chưa chọn tệp nào.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                EXMessagebox.Show("Bạn chưa chọn tệp nào.", "Thông báo");
                 return;
             }
 
