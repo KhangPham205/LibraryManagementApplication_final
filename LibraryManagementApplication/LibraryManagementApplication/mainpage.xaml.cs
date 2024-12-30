@@ -270,7 +270,7 @@ namespace LibraryManagementApplication
             try
             {
                 var reminders = context.DonMuons
-                    .Where(d => d.NgayTraDK != null && d.NgayTraDK.Date <= DateTime.Now.AddDays(3) && d.NgayTraTT == null)
+                    .Where(d => d.NgayTraDK != null && d.NgayTraDK.Date <= DateTime.Now.AddMonths(3) && d.NgayTraTT == null)
                     .GroupBy(d => d.MaDG)
                     .Select(group => new
                     {
@@ -295,9 +295,15 @@ namespace LibraryManagementApplication
                     string body = $"Kính gửi bạn đọc,\n\n" +
                                   $"Thư viện nhắc nhở bạn về các cuốn sách bạn đang mượn. Dưới đây là danh sách:\n\n";
 
-                    foreach (var sach in reminder.SachList)
+                    // Ghép danh sách sách cách nhau bởi dấu phẩy
+                    var danhSachSach = string.Join(", ", reminder.SachList.Select(s => s.TenSach));
+                    body += danhSachSach;
+
+                    // Giả sử tất cả sách trong danh sách có cùng ngày trả dự kiến
+                    var ngayTraDK = reminder.SachList.FirstOrDefault()?.NgayTraDK;
+                    if (ngayTraDK != null)
                     {
-                        body += $"- {sach.TenSach}\n"; 
+                        body += $"\n\nNgày trả dự kiến: {ngayTraDK:dd/MM/yyyy}\n"; // Hiển thị ngày trả dự kiến một lần
                     }
 
                     body += "\nVui lòng trả sách đúng hạn để tránh phí phạt.\n\n" +
@@ -305,6 +311,7 @@ namespace LibraryManagementApplication
 
                     await SendEmailAsync(reminder.Email, subject, body);
                 }
+                EXMessagebox.Show("Gửi mail thành công", "Thông báo");
             }
             catch (Exception ex)
             {
