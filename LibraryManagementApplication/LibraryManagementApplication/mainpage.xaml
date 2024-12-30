@@ -7,7 +7,7 @@
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1180">
+      d:DesignHeight="700" d:DesignWidth="1400">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -104,6 +104,8 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Margin="10,15,10,5" Orientation="Horizontal">
                     <TextBlock Text="Ngày mượn:  BD: "
@@ -122,15 +124,22 @@
                 <Button x:Name="show"
                         Grid.Column="4"
                         Content="Tìm đơn"
-                        Margin="10,15,10,5"
+                        Margin="0,15,0,5"
                         Style="{StaticResource button:find}"
                         Click="show_Click"/>
                 <Button 
                         Grid.Column="6"
                         Content="Hiển thị"
-                        Margin="10,15,10,5"
+                        Margin="0,15,0,5"
                         Style="{StaticResource button:show}"
                         Click="Button_Click"/>
+                <Button x:Name="mail"
+                        Grid.Column="8"
+                        Content="Gửi mail nhắc nhở"
+                        Width="175"
+                        Margin="0,15,10,5"
+                        Style="{StaticResource button:history}"
+                        Click="mail_Click"/>
             </Grid>
             <DataGrid x:Name="datagridDSMuon"
                       Grid.Row="2"

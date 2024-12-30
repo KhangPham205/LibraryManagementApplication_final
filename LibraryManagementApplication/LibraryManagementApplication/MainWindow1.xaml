@@ -8,7 +8,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="Quản Lý Thư Viện" Height="700" Width="1300"
-        MinHeight="700" MinWidth="1300" Icon="pack://application:,,,/icon/book.png">
+        MinHeight="700" MinWidth="1400" Icon="pack://application:,,,/icon/book.png">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>

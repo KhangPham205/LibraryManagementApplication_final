@@ -70,18 +70,6 @@ namespace LibraryManagementApplication.ViewModel
             window.Show();
             Window.GetWindow(p).Close();
         }
-
-        private byte[] ConvertBitmapImageToByteArray(BitmapImage bitmapImage)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                BitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
-                encoder.Save(memoryStream);
-                return memoryStream.ToArray();
-            }
-        }
-
         // Convert byte[] to BitmapImage
         private BitmapImage ConvertByteArrayToBitmapImage(byte[] byteArray)
         {

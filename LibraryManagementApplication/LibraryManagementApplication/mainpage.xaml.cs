@@ -263,6 +263,11 @@ namespace LibraryManagementApplication
             enddate = null;
             datagridDSMuon.ItemsSource = context.DonMuons.ToList();
         }
+
+        private void mail_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public class TheLoaiReport
