@@ -766,10 +766,5 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <ResourceDictionary x:Key="MainVM">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourceXAML/MainResource.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
     </Application.Resources>
 </Application>

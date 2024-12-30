@@ -163,23 +163,21 @@
                     Margin="10"
                     />
             <Grid Panel.ZIndex="1"
-                    Grid.Column="1"
-                    Grid.RowSpan="3"
+                  Grid.Column="1"
+                  Grid.RowSpan="3"
                   Grid.Row="0"
-                  Margin="10"
-                    >
+                  Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Thống kê tình trạng sách"
-                               Margin="5"
-                               HorizontalAlignment="Center"
-                               Style="{StaticResource textblock:style1}"/>
+                           Margin="5"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource textblock:style1}"/>
                 <lvc:PieChart LegendLocation="Bottom"        
-                                  Margin="0"
-                                  Grid.Row="1"
-                                  >
+                              Margin="0"
+                              Grid.Row="1">
                     <lvc:PieChart.Series>
                         <lvc:PieSeries Title="Có sẵn"
                                x:Name="PieSeriesAvailable"
@@ -284,11 +282,11 @@
                     </Button>
                     <TextBlock x:Name="Namthongke"
                                Grid.Row="1"
-                                Text="{Binding namthongke,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                Margin="5"
-                                HorizontalAlignment="Center"
-                                Grid.Column="1"
-                                Style="{StaticResource textblock:style1}"/>
+                               Text="{Binding namthongke,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                               Margin="5"
+                               HorizontalAlignment="Center"
+                               Grid.Column="1"
+                               Style="{StaticResource textblock:style1}"/>
                     <TextBlock Text="Thống kê số độc giả mượn sách hàng tháng"
                            Margin="5"
                            HorizontalAlignment="Center"

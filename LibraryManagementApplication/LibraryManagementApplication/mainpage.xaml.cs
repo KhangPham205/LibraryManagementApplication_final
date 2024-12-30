@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
@@ -264,10 +265,76 @@ namespace LibraryManagementApplication
             datagridDSMuon.ItemsSource = context.DonMuons.ToList();
         }
 
-        private void mail_Click(object sender, RoutedEventArgs e)
+        private async void mail_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var reminders = context.DonMuons
+                    .Where(d => d.NgayTraDK != null && d.NgayTraDK.Date <= DateTime.Now.AddDays(3) && d.NgayTraTT == null)
+                    .GroupBy(d => d.MaDG)
+                    .Select(group => new
+                    {
+                        MaDocGia = group.Key,
+                        Email = context.DocGias.FirstOrDefault(dg => dg.MaDG == group.Key).Email,
+                        SachList = group.Select(d => new
+                        {
+                            MaMuon = d.MaMuon,
+                            NgayTraDK = d.NgayTraDK,
+                            TenSach = string.Join(", ", context.CTDMs
+                                .Where(c => c.MaMuon == d.MaMuon)
+                                .Select(c => context.Sachs.FirstOrDefault(s => s.ISBN == c.ISBN).TenDauSach))
+                        }).ToList()
+                    }).ToList();
 
+                foreach (var reminder in reminders)
+                {
+                    if (string.IsNullOrEmpty(reminder.Email))
+                        continue;
+
+                    string subject = "Nhắc nhở trả sách từ Thư viện";
+                    string body = $"Kính gửi bạn đọc,\n\n" +
+                                  $"Thư viện nhắc nhở bạn về các cuốn sách bạn đang mượn. Dưới đây là danh sách:\n\n";
+
+                    foreach (var sach in reminder.SachList)
+                    {
+                        body += $"- {sach.TenSach}\n"; 
+                    }
+
+                    body += "\nVui lòng trả sách đúng hạn để tránh phí phạt.\n\n" +
+                            "Trân trọng,\nThư viện.";
+
+                    await SendEmailAsync(reminder.Email, subject, body);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra khi gửi email: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
+        private async Task SendEmailAsync(string toEmail, string subject, string body)
+        {
+            string fromEmail = "khonggian2k0520@gmail.com"; // Thay bằng email của bạn
+            string password = "ttcs ttwh psdn izyw";    // Thay bằng mật khẩu email của bạn
+
+            using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))
+            {
+                client.Credentials = new System.Net.NetworkCredential(fromEmail, password);
+                client.EnableSsl = true;
+
+                using (MailMessage mailMessage = new MailMessage())
+                {
+                    mailMessage.From = new MailAddress(fromEmail);
+                    mailMessage.Subject = subject;
+                    mailMessage.Body = body;
+                    mailMessage.IsBodyHtml = false;
+                    mailMessage.To.Add(toEmail);
+
+                    await client.SendMailAsync(mailMessage);
+                }
+            }
+        }
+
     }
 
     public class TheLoaiReport
