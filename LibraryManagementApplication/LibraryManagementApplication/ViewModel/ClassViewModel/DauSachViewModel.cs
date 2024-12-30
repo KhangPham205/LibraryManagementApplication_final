@@ -219,7 +219,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                 bool exists = await IsDauSachExistsAsync(TenDauSach);
                 if (exists)
                 {
-                    EXMessagebox.Show("Thể loại này đã tồn tại.");
+                    EXMessagebox.Show("Đầu sách này đã tồn tại.");
                     return;
                 }
 

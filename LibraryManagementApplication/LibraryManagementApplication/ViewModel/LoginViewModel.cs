@@ -120,7 +120,8 @@ namespace LibraryManagementApplication.ViewModel
 
     public static class PasswordBoxHelper
     {
-        public static DependencyProperty BindPasswordProperty = DependencyProperty.RegisterAttached("BindPassword", typeof(string), typeof(PasswordBoxHelper), new PropertyMetadata(string.Empty, OnBindPasswordChanged));
+        public static DependencyProperty BindPasswordProperty = 
+            DependencyProperty.RegisterAttached("BindPassword", typeof(string), typeof(PasswordBoxHelper), new PropertyMetadata(string.Empty, OnBindPasswordChanged));
         public static void SetBindPassword(DependencyObject element, string value)
         {
             element.SetValue(BindPasswordProperty, value);

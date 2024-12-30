@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementApplication.ViewModel.ClassViewModel"
         mc:Ignorable="d"
-        Height="auto" Width="950"
+        Height="450" Width="950"
         ResizeMode="NoResize"
         Icon="/Icon/book.png">
     <Window.DataContext>
