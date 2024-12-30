@@ -270,7 +270,7 @@ namespace LibraryManagementApplication
             try
             {
                 var reminders = context.DonMuons
-                    .Where(d => d.NgayTraDK != null && d.NgayTraDK.Date <= DateTime.Now.AddMonths(3) && d.NgayTraTT == null)
+                    .Where(d => d.NgayTraDK != null && d.NgayTraDK.Date <= DateTime.Now.AddDays(3) && d.NgayTraTT == null)
                     .GroupBy(d => d.MaDG)
                     .Select(group => new
                     {
