@@ -5,17 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementApplication.ViewModel.ClassViewModel"
         mc:Ignorable="d"
-        Height="700" Width="1000"
+        Height="700"
+        Width="1000"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Icon="pack://application:,,,/icon/book.png">
     <Window.DataContext>
-        <local:TaiKhoanViewModel/>
+        <local:TaiKhoanViewModel />
     </Window.DataContext>
     <Grid Background="#e6f3ff">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Border CornerRadius="0,0,20,20"
                 Background="#9acbff">
@@ -25,16 +26,16 @@
                        FontFamily="roboto"
                        Foreground="#07209e"
                        HorizontalAlignment="Center"
-                       Margin="0,10,0,10"/>
+                       Margin="0,10,0,10" />
         </Border>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="6*"/>
-                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="5*" />
             </Grid.ColumnDefinitions>
             <Border Margin="40,20,40,10"
                     BorderBrush="#07209e"
@@ -43,18 +44,18 @@
                     CornerRadius="20">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="10" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="130"/>
-                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="Tên nhân viên:"
@@ -62,116 +63,136 @@
                                Grid.Column="0"
                                Grid.Row="1"
                                Margin="5"
-                               HorizontalAlignment="Right"/>
+                               HorizontalAlignment="Right" />
                     <TextBox x:Name="tentb"
                              Grid.Column="1"
                              Grid.Row="1"
                              Margin="5"
                              Style="{StaticResource textbox:style1}"
-                             Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="Email: "
                                Style="{StaticResource textblock:style1}"
                                Grid.Column="0"
                                Grid.Row="2"
                                Margin="5"
-                               HorizontalAlignment="Right"/>
+                               HorizontalAlignment="Right" />
                     <TextBox x:Name="emailtb"
                              Grid.Column="1"
                              Grid.Row="2"
                              Style="{StaticResource textbox:style1}"
                              Margin="5"
-                             Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="CCCD: "
                                Style="{StaticResource textblock:style1}"
                                Grid.Column="0"
                                Grid.Row="3"
                                Margin="5"
-                               HorizontalAlignment="Right"/>
+                               HorizontalAlignment="Right" />
                     <TextBox x:Name="cccdtb"
                              Grid.Column="1"
                              Grid.Row="3"
                              Style="{StaticResource textbox:style1}"
                              Margin="5"
-                             Text="{Binding CCCD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding CCCD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text="SDT: "
                                Style="{StaticResource textblock:style1}"
                                Grid.Column="0"
                                Grid.Row="4"
                                Margin="5"
-                               HorizontalAlignment="Right"/>
+                               HorizontalAlignment="Right" />
                     <TextBox x:Name="sdttb"
                              Grid.Column="1"
                              Grid.Row="4"
                              Style="{StaticResource textbox:style1}"
                              Margin="5"
-                             Text="{Binding SDT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding SDT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <Grid Grid.Row="5"
                           Grid.Column="0"
                           Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
                         <Button x:Name="editsach"
                                 Content="Sửa"
                                 Grid.Column="2"
-                                Margin="5"  
+                                Margin="5"
                                 Style="{DynamicResource button:edit}"
-                                Command="{Binding EditCommand}"/>
+                                Command="{Binding EditCommand}" />
                         <Button x:Name="deletesach"
                                 Content="Xóa"
                                 Grid.Column="4"
                                 Margin="5"
                                 Style="{DynamicResource button:delete}"
-                                Command="{Binding DeleteCommand}"/>
+                                Command="{Binding DeleteCommand}" />
                     </Grid>
                 </Grid>
             </Border>
-            <Grid x:Name="donmuongrid" Margin="5"
+            <Grid x:Name="donmuongrid"
+                  Margin="5"
                   Grid.ColumnSpan="2"
                   Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock Text="Lịch sử phụ trách đơn mượn" Style="{StaticResource textblock:style1}"/>
+                <TextBlock Text="Lịch sử phụ trách đơn mượn"
+                           Style="{StaticResource textblock:style1}" />
                 <DataGrid x:Name="datagridMuon"
                           Grid.Row="1"
                           SelectedItem="{Binding SelectedDonMuon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           ItemsSource="{Binding DonMuonList}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mã đơn mượn" Width="*" Binding="{Binding MaMuon}"/>
-                        <DataGridTextColumn Header="Mã độc giả" Width="*" Binding="{Binding MaDG}"/>
-                        <DataGridTextColumn Header="Ngày mượn" Width="*" Binding="{Binding NgayMuon, StringFormat='dd/MM/yyyy'}"/>
-                        <DataGridTextColumn Header="Ngày trả dự kiến" Width="*" Binding="{Binding NgayTraDK, StringFormat='dd/MM/yyyy'}"/>
-                        <DataGridTextColumn Header="Ngày trả thực tế" Width="*" Binding="{Binding NgayTraTT, StringFormat='dd/MM/yyyy'}"/>
-                        <DataGridTextColumn Header="Phí phạt (VND)" Width="*" Binding="{Binding PhiPhat}"/>
+                        <DataGridTextColumn Header="Mã đơn mượn"
+                                            Width="*"
+                                            Binding="{Binding MaMuon}" />
+                        <DataGridTextColumn Header="Mã độc giả"
+                                            Width="*"
+                                            Binding="{Binding MaDG}" />
+                        <DataGridTextColumn Header="Ngày mượn"
+                                            Width="*"
+                                            Binding="{Binding NgayMuon, StringFormat='dd/MM/yyyy'}" />
+                        <DataGridTextColumn Header="Ngày trả dự kiến"
+                                            Width="*"
+                                            Binding="{Binding NgayTraDK, StringFormat='dd/MM/yyyy'}" />
+                        <DataGridTextColumn Header="Ngày trả thực tế"
+                                            Width="*"
+                                            Binding="{Binding NgayTraTT, StringFormat='dd/MM/yyyy'}" />
+                        <DataGridTextColumn Header="Phí phạt (VND)"
+                                            Width="*"
+                                            Binding="{Binding PhiPhat}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-            <Grid x:Name="ctdmgrid" Grid.Row="0"
+            <Grid x:Name="ctdmgrid"
+                  Grid.Row="0"
                   Grid.Column="1"
                   Margin="5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock Text="Chi tiết đơn mượn" Style="{StaticResource textblock:style1}"/>
-                <DataGrid x:Name="sach" 
+                <TextBlock Text="Chi tiết đơn mượn"
+                           Style="{StaticResource textblock:style1}" />
+                <DataGrid x:Name="sach"
                           Grid.Row="1"
                           ItemsSource="{Binding DanhSachMuon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Sách" Width="*" Binding="{Binding TenDauSach}"/>
-                        <DataGridTextColumn Header="IBSN" Width="*" Binding="{Binding ISBN}"/>
+                        <DataGridTextColumn Header="Sách"
+                                            Width="*"
+                                            Binding="{Binding TenDauSach}" />
+                        <DataGridTextColumn Header="IBSN"
+                                            Width="*"
+                                            Binding="{Binding ISBN}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

@@ -6,62 +6,68 @@
         xmlns:local="clr-namespace:LibraryManagementApplication.ViewModel"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Height="500" Width="800"
-        MinHeight="500" MinWidth="800"
+        Height="500"
+        Width="800"
+        MinHeight="500"
+        MinWidth="800"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Icon="pack://application:,,,/icon/book.png">  
+        Icon="pack://application:,,,/icon/book.png">
     <Window.DataContext>
-        <local:LoginViewModel/>
+        <local:LoginViewModel />
     </Window.DataContext>
     <Grid Background="#e6f3ff">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Border 
-            CornerRadius="0,20,20,0"
-            Background="#9acbff">
-            <StackPanel Margin="10" VerticalAlignment="Center">
-                <Image Source="/Icon/book.png" Margin="10"/>
+        <Border CornerRadius="0,20,20,0"
+                Background="#9acbff">
+            <StackPanel Margin="10"
+                        VerticalAlignment="Center">
+                <Image Source="/Icon/book.png"
+                       Margin="10" />
                 <TextBlock Text="Library Management"
                            TextWrapping="Wrap"
                            TextAlignment="Center"
                            FontSize="28"
                            FontWeight="Bold"
-                           Style="{StaticResource textblock:style1}"/>
+                           Style="{StaticResource textblock:style1}" />
             </StackPanel>
         </Border>
         <Image Source="/Icon/bannerbook.jpg"
-        Grid.Column="1"
-        Stretch="Uniform"
-        VerticalAlignment="Bottom"
-        HorizontalAlignment="Center"
-        Opacity="0.3"
-        Panel.ZIndex="-1"/>
-        <Grid Grid.Column="1" Height="auto" VerticalAlignment="Center">
+               Grid.Column="1"
+               Stretch="Uniform"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Center"
+               Opacity="0.3"
+               Panel.ZIndex="-1" />
+        <Grid Grid.Column="1"
+              Height="auto"
+              VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <Frame x:Name="loginframe" Margin="10"
+            <Frame x:Name="loginframe"
+                   Margin="10"
                    Grid.ColumnSpan="3"
-                   NavigationUIVisibility="Hidden"/>
+                   NavigationUIVisibility="Hidden" />
             <TextBlock  x:Name="forgot"
-                Foreground="#07209e"
-                Background="Transparent"
-                FontWeight="Medium"
-                Grid.Row="1"
-                Grid.Column="1"
-                HorizontalAlignment="Center"        
-                FontSize="13"
-                Margin="10">
-                <Hyperlink Command="{Binding RecoverCommand}"                            
+                        Foreground="#07209e"
+                        Background="Transparent"
+                        FontWeight="Medium"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        FontSize="13"
+                        Margin="10">
+                <Hyperlink Command="{Binding RecoverCommand}"
                            CommandParameter="{Binding ElementName=loginframe}"
                            Cursor="Hand"
                            Click="Hyperlink_Click">
@@ -69,19 +75,19 @@
                 </Hyperlink>
             </TextBlock>
             <TextBlock  x:Name="singin"
-                Foreground="#07209e"
-                Background="Transparent"
-                FontWeight="Medium"
-                Grid.Row="1"
-                Grid.Column="1"
-                Visibility="Collapsed"
-                HorizontalAlignment="Center"        
-                FontSize="13"
-                Margin="10">
-    <Hyperlink Command="{Binding LoginPageCommand}"                            
-               CommandParameter="{Binding ElementName=loginframe}"
-               Cursor="Hand"
-               Click="Hyperlink_Click_1">
+                        Foreground="#07209e"
+                        Background="Transparent"
+                        FontWeight="Medium"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Visibility="Collapsed"
+                        HorizontalAlignment="Center"
+                        FontSize="13"
+                        Margin="10">
+    <Hyperlink Command="{Binding LoginPageCommand}"
+                CommandParameter="{Binding ElementName=loginframe}"
+                Cursor="Hand"
+                Click="Hyperlink_Click_1">
                 Đăng nhập
     </Hyperlink>
             </TextBlock>

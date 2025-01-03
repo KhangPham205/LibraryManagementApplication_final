@@ -1,115 +1,114 @@
 ﻿<Page x:Class="LibraryManagementApplication.SignUpPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:LibraryManagementApplication.ViewModel.ClassViewModel"
-      mc:Ignorable="d" 
-      Height="auto" Width="auto"
+      mc:Ignorable="d"
+      Height="auto"
+      Width="auto"
       Title="SignInPage">
     <Page.DataContext>
-        <local:TaiKhoanViewModel/>
+        <local:TaiKhoanViewModel />
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Text="Đăng Ký"
-        FontSize="50"
-        FontWeight="Bold"
-        FontFamily="roboto"
-        Foreground="#07209e"
-        HorizontalAlignment="Center"
-        Margin="0,10,0,10"/>
-        <Grid
-         Grid.Row="1"
-         Margin="10,0,10,0">
+                   FontSize="50"
+                   FontWeight="Bold"
+                   FontFamily="roboto"
+                   Foreground="#07209e"
+                   HorizontalAlignment="Center"
+                   Margin="0,10,0,10" />
+        <Grid Grid.Row="1"
+              Margin="10,0,10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="160"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="300" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Style="{StaticResource textblock:style1}"
-         Grid.Row="1"
-         Grid.Column="1"
-         Text="Tên người dùng:"
-         Margin="10"
-         HorizontalAlignment="Right"/>
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       Text="Tên người dùng:"
+                       Margin="10"
+                       HorizontalAlignment="Right" />
             <TextBlock Style="{StaticResource textblock:style1}"
-         Grid.Row="2"
-         Grid.Column="1"
-         Text="Mật khẩu: "
-         Foreground="#07209e"
-         FontSize="18"
-         Margin="10"
-         HorizontalAlignment="Right"/>
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       Text="Mật khẩu: "
+                       Foreground="#07209e"
+                       FontSize="18"
+                       Margin="10"
+                       HorizontalAlignment="Right" />
             <TextBlock Style="{StaticResource textblock:style1}"
-         Grid.Row="3"
-         Grid.Column="1"
-         Text="Email:"
-         Margin="10"
-         HorizontalAlignment="Right"/>
+                       Grid.Row="3"
+                       Grid.Column="1"
+                       Text="Email:"
+                       Margin="10"
+                       HorizontalAlignment="Right" />
             <TextBlock Style="{StaticResource textblock:style1}"
-         Grid.Row="4"
-         Grid.Column="1"
-         Text="Số điện thoại:"
-         Margin="10"
-         HorizontalAlignment="Right"/>
+                       Grid.Row="4"
+                       Grid.Column="1"
+                       Text="Số điện thoại:"
+                       Margin="10"
+                       HorizontalAlignment="Right" />
             <TextBlock Style="{StaticResource textblock:style1}"
-         Grid.Row="5"
-         Grid.Column="1"
-         Text="CCCD:"
-         Margin="10"
-         HorizontalAlignment="Right"/>
+                       Grid.Row="5"
+                       Grid.Column="1"
+                       Text="CCCD:"
+                       Margin="10"
+                       HorizontalAlignment="Right" />
             <TextBox x:Name="username"
-             Style="{StaticResource textbox:style1}"
-             Grid.Column="2"
-             Grid.Row="1"
-             Text="{Binding UserName}"
-             />
+                     Style="{StaticResource textbox:style1}"
+                     Grid.Column="2"
+                     Grid.Row="1"
+                     Text="{Binding UserName}" />
             <TextBox x:Name="password"
-             Style="{StaticResource textbox:style1}"
-             Grid.Column="2"
-             Grid.Row="2"
-             Text="{Binding Password}"/>
+                     Style="{StaticResource textbox:style1}"
+                     Grid.Column="2"
+                     Grid.Row="2"
+                     Text="{Binding Password}" />
             <TextBox x:Name="email"
-             Style="{StaticResource textbox:style1}"
-             Grid.Column="2"
-             Grid.Row="3"
-             Text="{Binding Email}"/>
+                     Style="{StaticResource textbox:style1}"
+                     Grid.Column="2"
+                     Grid.Row="3"
+                     Text="{Binding Email}" />
             <TextBox x:Name="sdt"
-             Style="{StaticResource textbox:style1}"
-             Grid.Column="2"
-             Grid.Row="4"
-             Text="{Binding SDT}"/>
+                     Style="{StaticResource textbox:style1}"
+                     Grid.Column="2"
+                     Grid.Row="4"
+                     Text="{Binding SDT}" />
             <TextBox x:Name="cccd"
-             Style="{StaticResource textbox:style1}"
-             Grid.Column="2"
-             Grid.Row="5"
-             Text="{Binding CCCD}"/>
+                     Style="{StaticResource textbox:style1}"
+                     Grid.Column="2"
+                     Grid.Row="5"
+                     Text="{Binding CCCD}" />
 
             <Button x:Name="signup"
-             Content="Đăng ký"
-             Style="{StaticResource button:style1}"
-             Width="300"
-             Grid.Column="2"
-             Grid.Row="6"
-             HorizontalAlignment="Right"
-             Command ="{Binding AddCommand}"
-             Click="signup_Click"
-             CommandParameter="{Binding ElementName=signUpWindow}">
+                    Content="Đăng ký"
+                    Style="{StaticResource button:style1}"
+                    Width="300"
+                    Grid.Column="2"
+                    Grid.Row="6"
+                    HorizontalAlignment="Right"
+                    Command="{Binding AddCommand}"
+                    Click="signup_Click"
+                    CommandParameter="{Binding ElementName=signUpWindow}">
             </Button>
         </Grid>
     </Grid>

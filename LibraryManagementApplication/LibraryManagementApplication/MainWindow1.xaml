@@ -7,18 +7,23 @@
         xmlns:local="clr-namespace:LibraryManagementApplication.ViewModel"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="Quản Lý Thư Viện" Height="700" Width="1300"
-        MinHeight="700" MinWidth="1400" Icon="pack://application:,,,/icon/book.png">
+        Title="Quản Lý Thư Viện"
+        Height="700"
+        Width="1300"
+        MinHeight="700"
+        MinWidth="1400"
+        Icon="pack://application:,,,/icon/book.png">
     <Window.DataContext>
-        <local:MainViewModel/>
+        <local:MainViewModel />
     </Window.DataContext>
     <Grid Background="#e6f3ff">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Border x:Name="Menu"
-                Grid.Column="0" Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.RowSpan="2"
                 Background="#FF36A4ED"
                 CornerRadius="0,20,20,0"
                 BorderBrush="Transparent"
@@ -33,7 +38,7 @@
                         <Storyboard>
                             <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                 To="0,0,-190,0"
-                                                Duration="0:0:0.2"/>
+                                                Duration="0:0:0.2" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -44,7 +49,7 @@
                         <Storyboard>
                             <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                 To="-190,0,0,0"
-                                                Duration="0:0:0.5"/>
+                                                Duration="0:0:0.5" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -55,14 +60,32 @@
                                  Command="{Binding infopagecommand}"
                                  CommandParameter="{Binding ElementName=Mainpage}">
                         <StackPanel>
-                            <Border HorizontalAlignment="Center" Margin="10" Height="150" Width="150" CornerRadius="75"
-                                    BorderBrush="#07209e" BorderThickness="2">
+                            <Border HorizontalAlignment="Center"
+                                    Margin="10"
+                                    Height="150"
+                                    Width="150"
+                                    CornerRadius="75"
+                                    BorderBrush="#07209e"
+                                    BorderThickness="2">
                                 <Border.Background>
-                                    <ImageBrush x:Name="pictureprofile" Stretch="UniformToFill" />
+                                    <ImageBrush x:Name="pictureprofile"
+                                                Stretch="UniformToFill" />
                                 </Border.Background>
                             </Border>
-                            <TextBlock x:Name="profile" Margin="10,5,10,0" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource textblock:menu}" FontSize="16" HorizontalAlignment="Center"/>
-                            <TextBlock x:Name="profileemail" Margin="10,0,10,5" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource textblock:menu}" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="profile"
+                                       Margin="10,5,10,0"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Style="{StaticResource textblock:menu}"
+                                       FontSize="16"
+                                       HorizontalAlignment="Center" />
+                            <TextBlock x:Name="profileemail"
+                                       Margin="10,0,10,5"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Style="{StaticResource textblock:menu}"
+                                       FontSize="14"
+                                       HorizontalAlignment="Center" />
                         </StackPanel>
                     </RadioButton>
                     <RadioButton x:Name="mainbutton"
@@ -71,30 +94,34 @@
                                  CommandParameter="{Binding ElementName=Mainpage}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Home"
-                                          Style="{StaticResource icon:menu}"/>
+                                          Style="{StaticResource icon:menu}" />
                             <TextBlock Text="Trang chủ"
-                                       Style="{StaticResource textblock:menu}"/>
+                                       Style="{StaticResource textblock:menu}" />
                         </StackPanel>
 
                     </RadioButton>
                     <RadioButton x:Name="sachbutton"
-                        Style="{StaticResource rbutton:menu}">
+                                 Style="{StaticResource rbutton:menu}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="BookOpen"
-                                          Style="{StaticResource icon:menu}"/>
+                                          Style="{StaticResource icon:menu}" />
                             <TextBlock Text="Thông tin sách"
-                                       Style="{StaticResource textblock:menu}"/>
+                                       Style="{StaticResource textblock:menu}" />
                         </StackPanel>
                     </RadioButton>
                     <StackPanel>
                         <StackPanel.Style>
                             <Style TargetType="StackPanel">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsChecked, ElementName=sachbutton }" Value="True">
-                                        <Setter Property="Visibility" Value="Visible"/>
+                                    <DataTrigger Binding="{Binding IsChecked, ElementName=sachbutton }"
+                                                 Value="True">
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsChecked, ElementName=sachbutton }" Value="False">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    <DataTrigger Binding="{Binding IsChecked, ElementName=sachbutton }"
+                                                 Value="False">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -104,9 +131,9 @@
                                      CommandParameter="{Binding ElementName=Mainpage}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="BookOpen"
-                                              Style="{StaticResource icon:submenu}"/>
+                                              Style="{StaticResource icon:submenu}" />
                                 <TextBlock Text="Đầu Sách"
-                                           Style="{StaticResource textblock:submenu}"/>
+                                           Style="{StaticResource textblock:submenu}" />
                             </StackPanel>
                         </RadioButton>
                         <RadioButton Style="{StaticResource rbutton:submenu}"
@@ -114,9 +141,9 @@
                                      CommandParameter="{Binding ElementName=Mainpage}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="Book"
-                                              Style="{StaticResource icon:submenu}"/>
+                                              Style="{StaticResource icon:submenu}" />
                                 <TextBlock Text="Sách"
-                                           Style="{StaticResource textblock:submenu}"/>
+                                           Style="{StaticResource textblock:submenu}" />
                             </StackPanel>
                         </RadioButton>
                         <RadioButton Style="{StaticResource rbutton:submenu}"
@@ -124,19 +151,19 @@
                                      CommandParameter="{Binding ElementName=Mainpage}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="PenNib"
-                                                Style="{StaticResource icon:submenu}"/>
+                                              Style="{StaticResource icon:submenu}" />
                                 <TextBlock Text="Tác giả"
-                                            Style="{StaticResource textblock:submenu}"/>
+                                           Style="{StaticResource textblock:submenu}" />
                             </StackPanel>
                         </RadioButton>
                         <RadioButton Style="{StaticResource rbutton:submenu}"
                                      Command="{Binding typepagecommand}"
                                      CommandParameter="{Binding ElementName=Mainpage}">
                             <StackPanel Orientation="Horizontal">
-                                <fa:IconImage Icon="BookBookmark" 
-                                              Style="{StaticResource icon:submenu}"/>
+                                <fa:IconImage Icon="BookBookmark"
+                                              Style="{StaticResource icon:submenu}" />
                                 <TextBlock Text="Thể loại"
-                                           Style="{StaticResource textblock:submenu}"/>
+                                           Style="{StaticResource textblock:submenu}" />
                             </StackPanel>
                         </RadioButton>
                         <RadioButton Style="{StaticResource rbutton:submenu}"
@@ -144,32 +171,32 @@
                                      CommandParameter="{Binding ElementName=Mainpage}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="Print"
-                                              Style="{StaticResource icon:submenu}"/>
+                                              Style="{StaticResource icon:submenu}" />
                                 <TextBlock Text="NXB"
-                                           Style="{StaticResource textblock:submenu}"/>
+                                           Style="{StaticResource textblock:submenu}" />
                             </StackPanel>
                         </RadioButton>
                     </StackPanel>
-                    <RadioButton x:Name="borrowlend" 
+                    <RadioButton x:Name="borrowlend"
                                  Style="{StaticResource rbutton:menu}"
                                  Command="{Binding borrowpagecommand}"
                                  CommandParameter="{Binding ElementName=Mainpage}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="CalendarDay"
-                                          Style="{StaticResource icon:menu}"/>
+                                          Style="{StaticResource icon:menu}" />
                             <TextBlock Text="Đơn mượn"
-                                       Style="{StaticResource textblock:menu}"/>
+                                       Style="{StaticResource textblock:menu}" />
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton x:Name="lend" 
+                    <RadioButton x:Name="lend"
                                  Style="{StaticResource rbutton:menu}"
                                  Command="{Binding lendpagecommand}"
                                  CommandParameter="{Binding ElementName=Mainpage}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="CalendarCheck"
-                                          Style="{StaticResource icon:menu}"/>
+                                          Style="{StaticResource icon:menu}" />
                             <TextBlock Text="Đơn trả"
-                                       Style="{StaticResource textblock:menu}"/>
+                                       Style="{StaticResource textblock:menu}" />
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource rbutton:menu}"
@@ -177,9 +204,9 @@
                                  CommandParameter="{Binding ElementName=Mainpage}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="BookOpenReader"
-                                          Style="{StaticResource icon:menu}"/>
+                                          Style="{StaticResource icon:menu}" />
                             <TextBlock Text="Độc giả"
-                                       Style="{StaticResource textblock:menu}"/>
+                                       Style="{StaticResource textblock:menu}" />
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource rbutton:menu}"
@@ -187,16 +214,16 @@
                                  CommandParameter="{Binding ElementName=Mainpage}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserAlt"
-                                          Style="{StaticResource icon:menu}"/>
+                                          Style="{StaticResource icon:menu}" />
                             <TextBlock Text="Nhân viên"
-                                       Style="{StaticResource textblock:menu}"/>
+                                       Style="{StaticResource textblock:menu}" />
                         </StackPanel>
                     </RadioButton>
 
                 </StackPanel>
             </Grid>
         </Border>
-        <Frame x:Name="Mainpage" 
+        <Frame x:Name="Mainpage"
                Grid.Column="1"
                NavigationUIVisibility="Hidden">
         </Frame>

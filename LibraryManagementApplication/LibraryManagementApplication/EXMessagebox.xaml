@@ -6,38 +6,56 @@
         xmlns:local="clr-namespace:LibraryManagementApplication"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        MinHeight="200" MinWidth="400"
+        MinHeight="200"
+        MinWidth="400"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent">
-    <Border CornerRadius="20" Background="#e6f3ff">
+    <Border CornerRadius="20"
+            Background="#e6f3ff">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Grid>
-                <StackPanel Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-                    <fa:IconImage Icon="Warning" Height="50" Width="50" Margin="5" Foreground="#07209e"/>
-                    <TextBlock x:Name="MessageText" Text="Your message here" 
-                               TextWrapping="Wrap" 
+                <StackPanel Height="auto"
+                            Width="auto"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                    <fa:IconImage Icon="Warning"
+                                  Height="50"
+                                  Width="50"
+                                  Margin="5"
+                                  Foreground="#07209e" />
+                    <TextBlock x:Name="MessageText"
+                               Text="Your message here"
+                               TextWrapping="Wrap"
                                MaxWidth="300"
-                               Style="{StaticResource textblock:style1}"/>
+                               Style="{StaticResource textblock:style1}" />
                 </StackPanel>
             </Grid>
-            <Border Grid.Row="1" Background="White" CornerRadius="0,0,20,20">
+            <Border Grid.Row="1"
+                    Background="White"
+                    CornerRadius="0,0,20,20">
                 <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-                        <Button x:Name="OkButton" Content="OK"  
-                            Style="{StaticResource button:message}"
-                            Click="OkButton_Click"
-                            Margin="10"/>
-                        <Button x:Name="CancelButton" Content="Cancel" 
-                            Style="{StaticResource button:message}"
-                            Click="CancelButton_Click"
-                            Margin="10"/>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top">
+                        <Button x:Name="OkButton"
+                                Content="OK"
+                                Style="{StaticResource button:message}"
+                                Click="OkButton_Click"
+                                Margin="10" />
+                        <Button x:Name="CancelButton"
+                                Content="Cancel"
+                                Style="{StaticResource button:message}"
+                                Click="CancelButton_Click"
+                                Margin="10" />
                     </StackPanel>
                 </Grid>
             </Border>
