@@ -1,17 +1,7 @@
 ﻿using LibraryManagementApplication.Model.Class;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using LibraryManagementApplication;
-using System.Data.SqlClient;
-using System.Globalization;
-using System.Windows.Data;
 
 namespace LibraryManagementApplication.ViewModel.ClassViewModel
 {

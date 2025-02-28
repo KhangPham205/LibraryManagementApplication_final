@@ -1,14 +1,9 @@
-﻿using LibraryManagementApplication.Model.Class;
-using System;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace LibraryManagementApplication.ViewModel
 {
@@ -17,7 +12,7 @@ namespace LibraryManagementApplication.ViewModel
         public string email { get; set; }
         public string sdt { get; set; }
         public string cccd { get; set; }
-        public string noti {  get; set; }
+        public string noti { get; set; }
         public DispatcherTimer dispatcherTimer;
         public int time;
         public ICommand RecoverCommand { get; set; }
@@ -58,7 +53,7 @@ namespace LibraryManagementApplication.ViewModel
                             dispatcherTimer.Stop();
                             countdown.Visibility = Visibility.Collapsed;
                         }
-                        
+
                     }
                     else
                     {
@@ -137,18 +132,19 @@ Email: khonggian2k0520@gmail.com
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             if (time >= 1)
-            {;
+            {
+                ;
                 time--;
                 noti = $"Mail sẽ được gửi đến bạn trong {time}s";
                 OnPropertyChanged(nameof(noti));
-                
+
             }
             else if (time == 0)
             {
                 time--;
                 noti = "Mail đã được gửi đến bạn!";
                 OnPropertyChanged(nameof(noti));
-                
+
             }
         }
 

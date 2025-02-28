@@ -1,19 +1,12 @@
-﻿using Microsoft.Win32;
-using LibraryManagementApplication.Model.Class;
+﻿using LibraryManagementApplication.Model.Class;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Text.RegularExpressions;
 using System.Windows.Media.Imaging;
-using OfficeOpenXml.Table.PivotTable;
-using System.Diagnostics.Eventing.Reader;
 
 namespace LibraryManagementApplication.ViewModel.ClassViewModel
 {
@@ -120,7 +113,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             {
                 if (newPassWord != value)
                 {
-                    newPassWord = value; 
+                    newPassWord = value;
                     OnPropertyChanged();
                 }
             }
@@ -292,9 +285,9 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
 
         private async Task<bool> AddTaiKhoan()
         {
-            if (!string.IsNullOrEmpty(UserName) && 
-                !string.IsNullOrEmpty(Password) && 
-                !string.IsNullOrEmpty(Email) && 
+            if (!string.IsNullOrEmpty(UserName) &&
+                !string.IsNullOrEmpty(Password) &&
+                !string.IsNullOrEmpty(Email) &&
                 !string.IsNullOrEmpty(SDT) &&
                 !string.IsNullOrEmpty(LoaiNV) &&
                 !string.IsNullOrEmpty(CCCD))
@@ -304,7 +297,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                     EXMessagebox.Show("Email không hợp lệ.", "Thông báo");
                     return false;
                 }
-                
+
                 if (!IsCitizenIDValid(CCCD))
                 {
                     EXMessagebox.Show("CCCD không hợp lệ.", "Thông báo");
@@ -348,7 +341,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             {
                 EXMessagebox.Show("Vui lòng nhập thông tin", "Cảnh báo");
                 return false;
-            }    
+            }
         }
 
         private async Task EditTaiKhoan()
@@ -409,7 +402,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             }
         }
         private void ShowTaiKhoan()
-        {           
+        {
             LoadTaiKhoanList();
         }
         private async Task ChangePassWord(Window p)
@@ -593,18 +586,6 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
         }
 
         #endregion
-
-        private byte[] ConvertBitmapImageToByteArray(BitmapImage bitmapImage)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                BitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
-                encoder.Save(memoryStream);
-                return memoryStream.ToArray();
-            }
-        }
-
         // Convert byte[] to BitmapImage
         private BitmapImage ConvertByteArrayToBitmapImage(byte[] byteArray)
         {

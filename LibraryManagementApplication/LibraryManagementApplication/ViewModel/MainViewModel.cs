@@ -1,16 +1,9 @@
 ﻿using LibraryManagementApplication.Model.Class;
-using LibraryManagementApplication;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.IO;
 
 namespace LibraryManagementApplication.ViewModel
 {
@@ -46,7 +39,7 @@ namespace LibraryManagementApplication.ViewModel
         public ICommand infopagecommand { get; set; }
         #endregion
         public MainViewModel()
-        { 
+        {
             signoutcommand = new RelayCommand<Page>((p) => { return true; }, (p) => { logOut(p); });
             mainpagecommand = new RelayCommand<Frame>((p) => { return p == null || !(p.Content is mainpage); }, (p) => { p.Content = new mainpage(); });
             bookpagecommand = new RelayCommand<Frame>((p) => { return p == null || !(p.Content is bookpage); }, (p) => { p.Content = new bookpage(); });
@@ -65,7 +58,8 @@ namespace LibraryManagementApplication.ViewModel
                 ProfileImage = ConvertByteArrayToBitmapImage(GlobalData.LoginUser.ProfileImage);
             }
         }
-        public void logOut(Page p) {
+        public void logOut(Page p)
+        {
             Window window = new LoginWindow();
             window.Show();
             Window.GetWindow(p).Close();

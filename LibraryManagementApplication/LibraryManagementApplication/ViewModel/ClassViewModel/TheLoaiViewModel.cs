@@ -1,12 +1,6 @@
 ﻿using LibraryManagementApplication.Model.Class;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace LibraryManagementApplication.ViewModel.ClassViewModel
@@ -20,7 +14,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
 
         public TheLoai SelectedTheLoai
         {
-            get => _selectedTheLoai; 
+            get => _selectedTheLoai;
             set
             {
                 if (_selectedTheLoai != value)
@@ -33,17 +27,17 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             }
         }
         private String _displayName;
-        public String DisplayName 
-        { 
-            get => _displayName; 
-            set 
-            { 
-                if (_displayName != value) 
-                {  
-                    _displayName = value; 
-                    OnPropertyChanged(); 
-                } 
-            } 
+        public String DisplayName
+        {
+            get => _displayName;
+            set
+            {
+                if (_displayName != value)
+                {
+                    _displayName = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         private async Task<string> CreateMaTLAsync()
@@ -72,8 +66,8 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
                     }
                     newCodeNumber++;
                 }
-                    // Trả về mã mới với định dạng "TL" + số có 3 chữ số
-                    return $"TL{newCodeNumber:D3}";
+                // Trả về mã mới với định dạng "TL" + số có 3 chữ số
+                return $"TL{newCodeNumber:D3}";
             }
         }
         public ICommand AddCommand { get; set; }
@@ -89,7 +83,7 @@ namespace LibraryManagementApplication.ViewModel.ClassViewModel
             EditCommand = new RelayCommand<object>((p) => SelectedTheLoai != null, async (p) => await EditTheLoai());
             DeleteCommand = new RelayCommand<object>((p) => SelectedTheLoai != null, async (p) => await DeleteTheLoai());
             SearchCommand = new RelayCommand<object>((p) => true, async (p) => await SearchTheLoai());
-            ShowCommand = new RelayCommand<object>((p) => true,  (p) => ShowTheLoai());
+            ShowCommand = new RelayCommand<object>((p) => true, (p) => ShowTheLoai());
             LoadTheLoaiList();
         }
 

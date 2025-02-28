@@ -1,14 +1,7 @@
 ﻿using LibraryManagementApplication.Model.Class;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace LibraryManagementApplication.ViewModel
 {
@@ -111,8 +104,8 @@ namespace LibraryManagementApplication.ViewModel
                 }
 
                 if (!IsLoginSuccessful)
-                //    MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                //else
+                    //    MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //else
                     EXMessagebox.Show("Đăng nhập thất bại", "Thông báo");
             }
         }
@@ -120,7 +113,7 @@ namespace LibraryManagementApplication.ViewModel
 
     public static class PasswordBoxHelper
     {
-        public static DependencyProperty BindPasswordProperty = 
+        public static DependencyProperty BindPasswordProperty =
             DependencyProperty.RegisterAttached("BindPassword", typeof(string), typeof(PasswordBoxHelper), new PropertyMetadata(string.Empty, OnBindPasswordChanged));
         public static void SetBindPassword(DependencyObject element, string value)
         {
